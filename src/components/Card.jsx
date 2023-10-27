@@ -1,7 +1,13 @@
-function Card({ imageUrl, onClick }) {
+import placeholderSVG from "../assets/icon.svg";
+
+function Card({ imageUrl, onClick, isLoading }) {
   return (
     <div className="card" onClick={onClick}>
-      <img src={imageUrl} alt="Memory card" />
+      {isLoading ? (
+        <img src={placeholderSVG} alt="Loading" />
+      ) : (
+        <img src={imageUrl} alt="Memory card" />
+      )}
     </div>
   );
 }

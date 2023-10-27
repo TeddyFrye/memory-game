@@ -48,13 +48,19 @@ function Gameboard({ updateScore }) {
 
   return (
     <div className="gameboard">
-      {currentCards.map((card) => (
-        <Card
-          key={card.id}
-          imageUrl={card.imageUrl}
-          onClick={() => handleCardClick(card.id)}
-        />
-      ))}
+      {currentCards.length === 0
+        ? // Display 6 placeholder cards
+          Array.from({ length: 6 }, (_, index) => (
+            <div key={index} className="card-placeholder"></div>
+          ))
+        : // Display the actual cards
+          currentCards.map((card) => (
+            <Card
+              key={card.id}
+              imageUrl={card.imageUrl}
+              onClick={() => handleCardClick(card.id)}
+            />
+          ))}
     </div>
   );
 }
