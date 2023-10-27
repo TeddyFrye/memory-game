@@ -2,12 +2,10 @@ import { useState, useEffect } from "react";
 import Card from "./Card";
 import { fetchPokemonData } from "../api";
 
-function Gameboard() {
+function Gameboard({ updateScore }) {
   const [cards, setCards] = useState([]); // Fetch these from an API
   const [currentCards, setCurrentCards] = useState([]);
   const [clickedCards, setClickedCards] = useState([]);
-  const [currentScore, setCurrentScore] = useState(0);
-  const [bestScore, setBestScore] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,9 +17,12 @@ function Gameboard() {
 
   const selectRandomCards = (allCards, num) => {
     const randomCards = [];
+    const tempCards = [...allCards];
     for (let i = 0; i < num; i++) {
-      const randomIndex = Math.floor(Math.random() * allCards.length);
-      randomCards.push(allCards[randomIndex]);
+      const randomIndex = Math.floor(Math.random() * tempCards.length);
+      const chosenCard = tempCards[randomIndex];
+      randomCards.push(chosenCard);
+      tempCards.splice(randomIndex, 1); // Remove the chosen card
     }
     return randomCards;
   };
@@ -35,21 +36,14 @@ function Gameboard() {
   const handleCardClick = (id) => {
     if (clickedCards.includes(id)) {
       // Game Over. Reset everything.
-      updateScore(currentScore); // Update the best score if needed
+      updateScore(0); // <-- Using the passed updateScore function
       setClickedCards([]);
-      setCurrentScore(0);
     } else {
-      const newScore = currentScore + 1;
-      setCurrentScore(newScore);
+      const newScore = clickedCards.length + 1;
+      updateScore(newScore); // <-- Using the passed updateScore function
       setClickedCards([...clickedCards, id]);
     }
     setCurrentCards(selectRandomCards(cards, 6));
-  };
-
-  const updateScore = (newScore) => {
-    if (newScore > bestScore) {
-      setBestScore(newScore);
-    }
   };
 
   return (
