@@ -1,9 +1,22 @@
-import "./App.css";
+import { useState } from "react";
+import Gameboard from "./components/Gameboard";
+import Scoreboard from "./components/Scoreboard";
 
 function App() {
+  const [currentScore, setCurrentScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+
+  const updateScore = (newScore) => {
+    setCurrentScore(newScore);
+    if (newScore > bestScore) {
+      setBestScore(newScore);
+    }
+  };
+
   return (
     <>
-      <p>Hello, world!</p>
+      <Scoreboard currentScore={currentScore} bestScore={bestScore} />
+      <Gameboard updateScore={updateScore} />
     </>
   );
 }
