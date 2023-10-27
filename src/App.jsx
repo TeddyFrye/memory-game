@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Gameboard from "./components/Gameboard";
-import Scoreboard from "./components/Scoreboard";
+import Gameboard from "./components/GameBoard.jsx";
+import Scoreboard from "./components/Scoreboard.jsx";
 
 function App() {
   const [currentScore, setCurrentScore] = useState(0);

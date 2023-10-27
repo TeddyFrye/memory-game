@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
 import Card from "./Card";
+import { fetchPokemonData } from "../api";
 
 function Gameboard() {
   const [cards, setCards] = useState([]); // Fetch these from an API
-  const [currrentCards, setCurrentCards] = useState([]);
+  const [currentCards, setCurrentCards] = useState([]);
   const [clickedCards, setClickedCards] = useState([]);
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
 
   useEffect(() => {
-    fetch("someAPIEndpoint")
-      .then((response) => response.json())
-      .then((data) => setCards(data));
+    const fetchData = async () => {
+      const data = await fetchPokemonData(151); // Fetch data for the first 151 Pokémon
+      setCards(data);
+    };
+    fetchData();
   }, []);
 
   const selectRandomCards = (allCards, num) => {
