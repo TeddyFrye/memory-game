@@ -1,16 +1,21 @@
 import { useState, useEffect } from "react";
 import Card from "./Card";
 import { fetchPokemonData } from "../api";
+import "../styles/Card.css";
+import "../styles/Gameboard.css";
 
 function Gameboard({ updateScore }) {
   const [cards, setCards] = useState([]); // Fetch these from an API
   const [currentCards, setCurrentCards] = useState([]);
   const [clickedCards, setClickedCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       const data = await fetchPokemonData(151); // Fetch data for the first 151 Pokémon
       setCards(data);
+      setIsLoading(false);
     };
     fetchData();
   }, []);
@@ -59,6 +64,7 @@ function Gameboard({ updateScore }) {
               key={card.id}
               imageUrl={card.imageUrl}
               onClick={() => handleCardClick(card.id)}
+              isLoading={isLoading}
             />
           ))}
     </div>

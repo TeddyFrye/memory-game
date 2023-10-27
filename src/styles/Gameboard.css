@@ -1,7 +1,9 @@
 .gameboard {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 16px; /* Optional: gap between cards */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the cards horizontally */
+    align-items: center; /* Center the cards vertically */
+    width: 100%; /* Take the full width of the parent */
+    min-height: 100vh; /* Optional: Set a minimum height to occupy full viewport height */
   }
   

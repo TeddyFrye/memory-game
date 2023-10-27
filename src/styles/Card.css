@@ -1,0 +1,22 @@
+.card-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: grey; /* or any other placeholder color */
+  }
+  
+  .card {
+    width: 50px; /* Set the width */
+    height: 50px; /* Set the height */
+    margin: 15px; /* Add some margin */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Other styles like border, box-shadow, etc */
+  }
+  
+  .card img {
+    width: 200%; /* Make sure the image scales */
+    height: 200%;
+    object-fit: cover; /* Cover the whole card area */
+  }
+  
