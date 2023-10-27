@@ -26,6 +26,12 @@ function Gameboard() {
     return randomCards;
   };
 
+  useEffect(() => {
+    if (cards.length > 0) {
+      setCurrentCards(selectRandomCards(cards, 6));
+    }
+  }, [cards]);
+
   const handleCardClick = (id) => {
     if (clickedCards.includes(id)) {
       // Game Over. Reset everything.
@@ -48,7 +54,7 @@ function Gameboard() {
 
   return (
     <div className="gameboard">
-      {cards.map((card) => (
+      {currentCards.map((card) => (
         <Card
           key={card.id}
           imageUrl={card.imageUrl}
