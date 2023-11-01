@@ -1,22 +1,27 @@
 .card-placeholder {
     width: 100%;
     height: 100%;
-    background-color: grey; /* or any other placeholder color */
+    background-color: grey; 
+    background-image: "../assets/icon.svg;"
   }
   
   .card {
-    width: 50px; /* Set the width */
-    height: 50px; /* Set the height */
+    width: 150px; /* Set the width */
+    height: 150px; /* Set the height */
     margin: 15px; /* Add some margin */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Other styles like border, box-shadow, etc */
-  }
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    background-color: white;
+   }
   
   .card img {
     width: 200%; /* Make sure the image scales */
     height: 200%;
-    object-fit: cover; /* Cover the whole card area */
+    object-fit: contain; /* Make sure the image keeps its aspect ratio */
+    overflow:hidden;
   }
   
