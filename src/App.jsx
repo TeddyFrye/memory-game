@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Gameboard from "./components/GameBoard.jsx";
 import Scoreboard from "./components/Scoreboard.jsx";
+import Professor from "./components/Professor.jsx";
 import "./styles/App.css";
 import "./styles/Gameboard.css";
 import "./styles/Card.css";
 import "./styles/Scoreboard.css";
-import "./styles/index.css";
 
 function App() {
   const [currentScore, setCurrentScore] = useState(0);
@@ -25,6 +25,9 @@ function App() {
       </div>
       <div className="gameboard-container">
         <Gameboard updateScore={updateScore} />
+      </div>
+      <div className="professor-container">
+        <Professor score={currentScore} bestScore={bestScore} />
       </div>
     </>
   );
