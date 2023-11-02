@@ -1,11 +1,11 @@
 .gameboard {
     width:  calc((150px * 3) + (15px * 2 * 3)); 
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* three equal columns */
-    grid-template-rows: repeat(2, 1fr);  /* two equal rows */
-    grid-gap: 15px;  /* space between grid items */
-    justify-items: center; /* horizontally center items */
-    align-items: center; /* vertically center items */
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(2, 1fr);  
+    grid-gap: 15px;  
+    justify-items: center; 
+    align-items: center; 
   }
 
   .gameboard-container {
