@@ -6,9 +6,9 @@
   }
   
   .card {
-    width: 150px; /* Set the width */
-    height: 150px; /* Set the height */
-    margin: 15px; /* Add some margin */
+    width: 150px; 
+    height: 150px; 
+    margin: 15px; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,12 +16,18 @@
     border-radius: 5px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
     background-color: white;
+    transition: all 0.2s;
+   }
+
+   .card:active {
+    transform: scale(0.95);
+    filter: brightness(0.8);
    }
   
   .card img {
-    width: 200%; /* Make sure the image scales */
+    width: 200%; 
     height: 200%;
-    object-fit: contain; /* Make sure the image keeps its aspect ratio */
+    object-fit: contain; 
     overflow:hidden;
   }
   
