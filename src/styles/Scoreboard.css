@@ -4,6 +4,7 @@
   align-items: center;
   height: calc(100vh - var(--scoreboard-height));
   margin: 5px;
+  flex-grow: 1;
 }
 
 .scoreboard {

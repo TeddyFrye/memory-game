@@ -23,11 +23,13 @@ function App() {
       <div className="scoreboard-container">
         <Scoreboard currentScore={currentScore} bestScore={bestScore} />
       </div>
-      <div className="gameboard-container">
-        <Gameboard updateScore={updateScore} />
-      </div>
-      <div className="professor-container">
-        <Professor score={currentScore} bestScore={bestScore} />
+      <div className="main-container">
+        <div className="gameboard-container">
+          <Gameboard updateScore={updateScore} />
+        </div>
+        <div className="professor-container">
+          <Professor score={currentScore} bestScore={bestScore} />
+        </div>
       </div>
     </>
   );

@@ -5,42 +5,44 @@
 
 .professor-container {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    justify-content: flex-end;
+    position: relative;
 }
 
 .professor-img {
     max-height: 300px; /* adjust as needed */
     margin-left: 20px;
-    position: absolute;
-    bottom: 0;
-    right: 5px;
+    position: relative;
+    top: 10px;
+    right: 20px;
+    display: flex;
+    justify-content: flex-end;
 
 }
 
 .speech-bubble {
-    padding: 10px 20px;
+    padding: 10px 10px;
     background-color: #fff;
     border-radius: 15px;
-    position: absolute;
-    bottom: 300px;
-    right: 5px;
-    width: 300px;
+    position: relative;
+    width: 100px;
+    bottom: 250px;
+    left: 100px;
     color: #000;
     font-family: 'OrangeKid', sans-serif;
-
-    /* For the small triangle pointing towards the professor */
-    &::before {
-        content: "";
-        position: absolute;
-        left: -10px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 0;
-        height: 0;
-        border-left: 10px solid transparent;
-        border-right: 10px solid #fff;
-        border-top: 10px solid transparent;
-        border-bottom: 10px solid transparent;
-    }
 }
 
+.speech-bubble::before{
+    content:"";
+    position: absolute;
+    left: 70%;
+    bottom: -10px;
+    transform: translateX(-30%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid #fff;
+    border-bottom: none;
+}

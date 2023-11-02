@@ -17,8 +17,8 @@ const Professor = ({ score, bestScore }) => {
   }
   return (
     <div className="professor-container">
-      <img src={professorImg} alt="Professor" className="professor-img" />
       <div className="speech-bubble">{message}</div>
+      <img src={professorImg} alt="Professor" className="professor-img" />
     </div>
   );
 };
