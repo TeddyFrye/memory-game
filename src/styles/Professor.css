@@ -11,7 +11,7 @@
 }
 
 .professor-img {
-    max-height: 300px; /* adjust as needed */
+    max-height: 400px; /* adjust as needed */
     margin-left: 20px;
     position: relative;
     top: 10px;
@@ -24,11 +24,11 @@
 .speech-bubble {
     padding: 10px 10px;
     background-color: #fff;
-    border-radius: 15px;
+    border-radius: 5px;
     position: relative;
     width: 100px;
-    bottom: 250px;
-    left: 100px;
+    bottom: 350px;
+    left: 140px;
     color: #000;
     font-family: 'OrangeKid', sans-serif;
 }
