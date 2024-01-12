@@ -63,6 +63,7 @@ function Gameboard({ updateScore }) {
             <Card
               key={card.id}
               imageUrl={card.imageUrl}
+              name={card.name}
               onClick={() => handleCardClick(card.id)}
               isLoading={isLoading}
             />
