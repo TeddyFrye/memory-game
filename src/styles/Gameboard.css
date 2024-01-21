@@ -15,6 +15,24 @@
     align-items: center;
     height: 100%;
   }
+  .card:focus {
+    outline: 2px solid rgb(57, 57, 116);
+  }
   
-  
+  @media (max-width: 768px) {
+    .gameboard {
+      width:  calc((100px * 3) + (15px * 2 * 3)); 
+      grid-gap: 10px;  
+      padding-left: 180px;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .gameboard {
+      width:  calc((80px * 3) + (15px * 2 * 3)); 
+      grid-gap: 10px;  
+      padding-left: 100px;
+    }
+  }
+
   

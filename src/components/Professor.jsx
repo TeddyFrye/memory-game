@@ -49,7 +49,11 @@ const Professor = ({ score, bestScore }) => {
         {displayedMessage}
         <span className="cursor"></span>
       </div>
-      <img src={professorImg} alt="Professor" className="professor-img" />
+      <img
+        src={professorImg}
+        alt="Professor Sada giving instructions"
+        className="professor-img"
+      />
     </div>
   );
 };

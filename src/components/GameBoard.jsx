@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Card from "./Card";
 import { fetchPokemonData } from "../api";
 import "../styles/Card.css";
@@ -9,6 +9,9 @@ function Gameboard({ updateScore }) {
   const [currentCards, setCurrentCards] = useState([]);
   const [clickedCards, setClickedCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  // New state to track the index of the currently focused card
+  const [focusedCardIndex, setFocusedCardIndex] = useState(0);
+  const cardRefs = useRef([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,36 +41,80 @@ function Gameboard({ updateScore }) {
     }
   }, [cards]);
 
+  // Effect for focusing the currently focused card
+  useEffect(() => {
+    if (cardRefs.current[focusedCardIndex]) {
+      cardRefs.current[focusedCardIndex].focus();
+    }
+  }, [currentCards, focusedCardIndex]);
+
+  // Arrow key navigation handler
+  const handleKeyNavigation = (e) => {
+    // Prevent the default action for navigation keys
+    if (["w", "a", "s", "d", "Enter"].includes(e.key.toLowerCase())) {
+      e.preventDefault();
+
+      switch (e.key.toLowerCase()) {
+        case "d": // Move right
+          setFocusedCardIndex(
+            (prevIndex) => (prevIndex + 1) % currentCards.length
+          );
+          break;
+        case "a": // Move left
+          setFocusedCardIndex(
+            (prevIndex) =>
+              (prevIndex - 1 + currentCards.length) % currentCards.length
+          );
+          break;
+        case "w": // Move up
+          setFocusedCardIndex(
+            (prevIndex) =>
+              (prevIndex - 3 + currentCards.length) % currentCards.length
+          );
+          break;
+        case "s": // Move down
+          setFocusedCardIndex(
+            (prevIndex) =>
+              (prevIndex + 3 + currentCards.length) % currentCards.length
+          );
+          break;
+
+        case "enter": // Select the card
+          handleCardClick(currentCards[focusedCardIndex].id);
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
   const handleCardClick = (id) => {
+    // Consolidate the logic for both click and keydown events
     if (clickedCards.includes(id)) {
       // Game Over. Reset everything.
-      updateScore(0); // <-- Using the passed updateScore function
+      updateScore(0);
       setClickedCards([]);
     } else {
       const newScore = clickedCards.length + 1;
-      updateScore(newScore); // <-- Using the passed updateScore function
+      updateScore(newScore);
       setClickedCards([...clickedCards, id]);
     }
     setCurrentCards(selectRandomCards(cards, 6));
   };
 
   return (
-    <div className="gameboard">
-      {currentCards.length === 0
-        ? // Display 6 placeholder cards
-          Array.from({ length: 6 }, (_, index) => (
-            <div key={index} className="card-placeholder"></div>
-          ))
-        : // Display the actual cards
-          currentCards.map((card) => (
-            <Card
-              key={card.id}
-              imageUrl={card.imageUrl}
-              name={card.name}
-              onClick={() => handleCardClick(card.id)}
-              isLoading={isLoading}
-            />
-          ))}
+    <div className="gameboard" onKeyDown={handleKeyNavigation} tabIndex="0">
+      {currentCards.map((card, index) => (
+        <Card
+          ref={(el) => (cardRefs.current[index] = el)} // Assign refs to each card
+          key={card.id}
+          imageUrl={card.imageUrl}
+          name={card.name}
+          onClick={() => handleCardClick(card.id)}
+          isLoading={isLoading}
+          tabIndex={index === focusedCardIndex ? 0 : -1} // Only the focused card is tabbable
+        />
+      ))}
     </div>
   );
 }
